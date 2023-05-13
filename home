@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Chatbot</title>
+  <style>
+    /* Minimalistic design styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .chatbox {
+      border: 1px solid #ccc;
+      background-color: #f9f9f9;
+      padding: 10px;
+      max-height: 400px;
+      overflow-y: scroll;
+    }
+
+    .user-input {
+      display: flex;
+    }
+
+    .user-input input[type="text"] {
+      flex: 1;
+      padding: 5px;
+    }
+
+    .user-input button {
+      padding: 5px 10px;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>AI Chatbot</h1>
+    <div class="chatbox" id="chatbox">
+      <!-- Chat messages will be dynamically added here -->
+    </div>
+    <div class="user-input">
+      <input type="text" id="user-input" placeholder="Write your message...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript code to handle chat functionality
+    function sendMessage() {
+      var userInput = document.getElementById('user-input');
+      var message = userInput.value.trim();
+
+      if (message !== '') {
+        addMessage('You', message);
+        userInput.value = '';
+
+        // Call AI backend to process the message and generate a response
+        // You'll need to implement the backend functionality separately
+        // and make an AJAX request here to retrieve the AI response.
+
+        // Example response for demonstration purposes
+        var aiResponse = 'This is the AI response.';
+
+        // Display the AI response
+        addMessage('AI', aiResponse);
+      }
+    }
+
+    function addMessage(sender, text) {
+      var chatbox = document.getElementById('chatbox');
+      var messageElement = document.createElement('div');
+      messageElement.innerHTML = '<strong>' + sender + ':</strong> ' + text;
+      chatbox.appendChild(messageElement);
+
+      // Scroll to the bottom of the chatbox
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+  </script>
+</body>
+</html>
